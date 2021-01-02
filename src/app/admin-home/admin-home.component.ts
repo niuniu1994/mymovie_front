@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {IMovie,ISession} from '../home';
+import {faFilm} from '@fortawesome/free-solid-svg-icons';
+import {MovieService} from '../service/movie.service';
+import {AuthService} from '../service/auth.service';
 
 @Component({
   selector: 'app-admin-home',
@@ -7,9 +11,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminHomeComponent implements OnInit {
 
-  constructor() { }
+  public movies: IMovie;
+  public faFilm = faFilm;
+  public alert = false;
+  constructor(private movieService:MovieService, private  authService: AuthService) { }
 
   ngOnInit(): void {
+    this.init()
   }
 
+  private init(){
+    this.movieService.getMoviesOfAdmin().then(value => {
+      if (value['msg']=='Success'){
+        this.movies = value['movies'];
+      }else {
+        this.alert = true;
+      }
+    })
+  }
+
+  public deleteAlert(): void {
+    this.alert = false;
+  }
 }

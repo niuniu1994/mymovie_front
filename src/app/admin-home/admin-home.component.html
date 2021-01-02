@@ -1,1 +1,49 @@
-<p>admin-home works!</p>
+<section class="main-content columns is-fullheight">
+  <app-sidebar></app-sidebar>
+  <div class="container column ">
+    <article class="message is-warning" [ngStyle]="{'display':alert === true ? 'block':'none'}">
+      <div class="message-header">
+        <p>Warning</p>
+        <button class="delete" aria-label="delete" (click)="deleteAlert()"></button>
+      </div>
+      <div class="message-body">
+        Information incomplete
+      </div>
+    </article>
+    <table class="table">
+      <thead>
+      <tr>
+        <th><abbr title="Index">Index</abbr></th>
+        <th><abbr title="Title">Title</abbr></th>
+        <th><abbr title="Duration">Duration</abbr></th>
+        <th><abbr title="Language">Language</abbr></th>
+        <th><abbr title="Subtitle">Subtitle</abbr></th>
+        <th><abbr title="Director">Director</abbr></th>
+        <th><abbr title="Stars">Stars</abbr></th>
+        <th><abbr title="Min age">Min age</abbr></th>
+        <th><abbr title="Start date">State date</abbr></th>
+        <th><abbr title="End date">End date</abbr></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let movie of movies; index as i">
+        <td><strong>{{i}}</strong></td>
+        <td>{{movie.title}}</td>
+        <td>{{movie.duration}}</td>
+        <td>{{movie.language}}</td>
+        <td>{{movie.subtitle}}</td>
+        <td>{{movie.director}}</td>
+        <td>{{movie.actors}}</td>
+        <td>{{movie.minAge}}</td>
+        <td>{{movie.startDate}}</td>
+        <td>{{movie.endDate}}</td>
+        <td *ngFor="let session of movie.sessionList">
+          {{session.day}} {{session.time}}/
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+

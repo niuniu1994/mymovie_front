@@ -1,27 +1,31 @@
 <section class="hero is-link is-fullheight-with-navbar">
   <div class="hero-body">
     <div class="container">
+      <form [formGroup]="formGroup">
+        <div class="column is-offset-one-quarter is-half">
+          <label class="label has-text-light is-large">Username</label>
+          <div class="control has-icons-left has-icons-right">
+            <input class="input is-large is-success" type="text" placeholder="Username" formControlName="username">
+            <fa-icon class="icon is-left" [icon]="faUser" size="2x"></fa-icon>
+          </div>
+          <label class="label has-text-light is-large">Password</label>
+          <div class="control has-icons-left has-icons-right">
+            <input class="input is-large is-success" type="password" placeholder="password" formControlName="password">
+            <fa-icon class="icon is-left" [icon]="faKey" size="2x"></fa-icon>
+            <p class="help is-danger is-center">{{alert}}</p>
+          </div>
+          <div class="field is-grouped is-grouped-centered mt-4 ">
 
-      <div class="column is-offset-one-quarter is-half">
-        <label class="label has-text-light is-large">Username</label>
-        <div class="control has-icons-left has-icons-right">
-          <input class="input is-large is-success" type="text" placeholder="Text input" value="bulma">
-          <fa-icon class="icon is-left" [icon]="faUser" size="2x"></fa-icon>
-        </div>
-        <label class="label has-text-light is-large">Password</label>
-        <div class="control has-icons-left has-icons-right">
-          <input class="input is-large is-success" type="text" placeholder="Text input" value="bulma">
-          <fa-icon class="icon is-left" [icon]="faKey" size="2x"></fa-icon>
-        </div>
-        <div class="field is-grouped is-grouped-centered mt-4 ">
-          <div class="control">
-            <button class="button is-primary is-large">Submit</button>
-          </div>
-          <div class="control">
-            <button class="button is-link is-light is-large">Cancel</button>
+            <div class="control">
+              <button class="button is-primary is-large" (click)="submit()">Submit</button>
+            </div>
+            <div class="control">
+              <button class="button is-link is-light is-large">Cancel</button>
+            </div>
           </div>
         </div>
-      </div>
+      </form>
+
     </div>
   </div>
 </section>

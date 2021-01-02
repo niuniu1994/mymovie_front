@@ -1,185 +1,158 @@
+
 <section class="main-content columns is-fullheight">
-  <aside class="column is-1 is-narrow-mobile is-fullheight section is-hidden-mobile">
-    <p class="menu-label is-hidden-touch">Navigation</p>
-    <ul class="menu-list">
-      <li>
-        <a href="#" class="">
-          <span class="icon"><fa-icon [icon]="faHome"></fa-icon></span> Home
-        </a>
-      </li>
-      <li>
-        <a href="#" class="">
-          <span class="icon"><fa-icon [icon]="faPlusSquare"></fa-icon> </span> New Movie
-        </a>
-    </ul>
-  </aside>
-
-
+  <app-sidebar></app-sidebar>
   <div class="container column is-10">
-
-    <div class="section">
-      <div class="card">
-        <div class="card-header"><p class="card-header-title">Movie info</p></div>
-        <div class="card-content">
-
-          <div class="field">
-            <label class="label">Title</label>
-            <div class="control has-icons-left">
-              <input class="input" type="text" placeholder="Movie title">
-              <span class="icon is-small is-left">  <fa-icon [icon]="faFilm"></fa-icon>   </span>
+    <form  [formGroup]="movieGroup">
+      <div class="section">
+        <div class="card">
+          <div class="card-header"><p class="card-header-title">Movie info</p></div>
+          <article class="message is-warning" [ngStyle]="{'display':alert === true ? 'block':'none'}" >
+            <div class="message-header">
+              <p>Warning</p>
+              <button class="delete" aria-label="delete" (click)="deleteAlert()" ></button>
             </div>
-          </div>
-
-          <label class="label">Duration</label>
-          <div class="field has-addons">
-            <div class="control has-icons-left ">
-              <input class="input " type="text" placeholder="Movie duration" value="bulma">
-              <span class="icon is-small is-left">  <fa-icon [icon]="faTime"></fa-icon>   </span>
+            <div class="message-body">
+              Information incomplete
             </div>
-            <div class="control">
-              <a class="button is-static">Minutes</a>
+          </article>
+          <article class="message is-success" [ngStyle]="{'display':alert1 === true ? 'block':'none'}" >
+            <div class="message-header">
+              <p>Info</p>
+              <button class="delete" aria-label="delete" (click)="deleteAlert()" ></button>
             </div>
-          </div>
-
-          <div class="field">
-            <label class="label">Language</label>
-            <div class="control has-icons-left has-icons-right">
-              <input class="input" type="email" placeholder="Movie language" value="hello@">
-              <span class="icon is-small is-left"> <fa-icon [icon]="faLanguage"></fa-icon>   </span>
+            <div class="message-body">
+              Movie added successfully
             </div>
-          </div>
-
-          <div class="field">
-            <label class="label">Subtitle</label>
-            <div class="control">
-              <div class="select">
-                <select>
-                  <option>None</option>
-                  <option>French</option>
-                  <option>English</option>
-                </select>
+          </article>
+          <article class="message is-danger" [ngStyle]="{'display':alert2 === true ? 'block':'none'}" >
+            <div class="message-header">
+              <p>Error</p>
+              <button class="delete" aria-label="delete" (click)="deleteAlert()" ></button>
+            </div>
+            <div class="message-body">
+              Movie add failed
+            </div>
+          </article>
+          <div class="card-content">
+            <div class="field">
+              <label class="label">Title</label>
+              <div class="control has-icons-left">
+                <input class="input" type="text" placeholder="Movie title" formControlName="title">
+                <span class="icon is-small is-left">  <fa-icon [icon]="faFilm"></fa-icon>   </span>
               </div>
             </div>
-          </div>
-
-          <div class="field">
-            <label class="label">Director</label>
-            <div class="control has-icons-left has-icons-right">
-              <input class="input" type="email" placeholder="Movie Director" value="hello@">
-              <span class="icon is-small is-left"> <fa-icon [icon]="faUserAstronaut"></fa-icon>   </span>
+            <label class="label">Duration</label>
+            <div class="field has-addons">
+              <div class="control has-icons-left ">
+                <input class="input" type="number" placeholder="Movie duration" value="" formControlName="duration">
+                <span class="icon is-small is-left">  <fa-icon [icon]="faTime"></fa-icon>   </span>
+              </div>
+              <div class="control">
+                <a class="button is-static">Minutes</a>
+              </div>
             </div>
-          </div>
 
-          <div class="field">
-            <label class="label">Main actors</label>
-            <div class="control has-icons-left has-icons-right">
-              <input class="input" type="email" placeholder="Main actors" value="hello@">
-              <span class="icon is-small is-left"> <fa-icon [icon]="faUserNinja"></fa-icon>   </span>
+            <div class="field">
+              <label class="label">Language</label>
+              <div class="control has-icons-left has-icons-right">
+                <input class="input" type="text" placeholder="Movie language" value="" formControlName="language">
+                <span class="icon is-small is-left"> <fa-icon [icon]="faLanguage"></fa-icon>   </span>
+              </div>
             </div>
-          </div>
 
-          <div class="field">
-            <label class="label">Minimum age</label>
-            <div class="control has-icons-left has-icons-right">
-              <input class="input" type="number" placeholder="Minimum age" value="hello@">
-              <span class="icon is-small is-left"> <fa-icon [icon]="faExclamation"></fa-icon>   </span>
-            </div>
-          </div>
-
-          <div class=field>
-            <label class="label">Movie showtimes</label>
-            <mat-form-field class="control" appearance="fill">
-              <mat-label>Enter a date range</mat-label>
-              <mat-date-range-input [rangePicker]="picker">
-                <input matStartDate placeholder="Start date" readonly>
-                <input matEndDate placeholder="End date" readonly>
-              </mat-date-range-input>
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-date-range-picker #picker></mat-date-range-picker>
-            </mat-form-field>
-          </div>
-
-          <label class="label">Scenes</label>
-          <div class="scenes">
-            <div class="field is-grouped">
+            <div class="field">
+              <label class="label">Subtitle</label>
               <div class="control">
                 <div class="select">
-                  <select>
-                    <option>Monday</option>
-                    <option>Tuesday</option>
-                    <option>Wednesday</option>
-                    <option>Thursday</option>
-                    <option>Friday</option>
-                    <option>Saturday</option>
-                    <option>Sunday</option>
+                  <select formControlName="subtitle">
+                    <option>None</option>
+                    <option>French</option>
+                    <option>English</option>
                   </select>
                 </div>
               </div>
-              <div class="ngx-timepicker-field-example">
-                <ngx-timepicker-field [format]="24" [defaultTime]="'00:00'"></ngx-timepicker-field>
+            </div>
+
+            <div class="field">
+              <label class="label">Director</label>
+              <div class="control has-icons-left has-icons-right">
+                <input class="input" type="email" placeholder="Movie Director" value="" formControlName="director">
+                <span class="icon is-small is-left"> <fa-icon [icon]="faUserAstronaut"></fa-icon>   </span>
               </div>
             </div>
-            <div class="field is-grouped">
-              <div class="control">
-                <div class="select">
-                  <select>
-                    <option>Monday</option>
-                    <option>Tuesday</option>
-                    <option>Wednesday</option>
-                    <option>Thursday</option>
-                    <option>Friday</option>
-                    <option>Saturday</option>
-                    <option>Sunday</option>
-                  </select>
+
+            <div class="field">
+              <label class="label">Main actors</label>
+              <div class="control has-icons-left has-icons-right">
+                <input class="input" type="email" placeholder="Main actors" value="" formControlName="actors">
+                <span class="icon is-small is-left"> <fa-icon [icon]="faUserNinja"></fa-icon>   </span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Minimum age</label>
+              <div class="control has-icons-left has-icons-right">
+                <input class="input" type="number" placeholder="Minimum age" value="" formControlName="minAge">
+                <span class="icon is-small is-left"> <fa-icon [icon]="faExclamation"></fa-icon>   </span>
+              </div>
+            </div>
+
+            <div class=field>
+              <label class="label">Movie show times</label>
+              <mat-form-field class="control" appearance="fill">
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                  <input matStartDate placeholder="Start date" (dateChange)="startDateChange($event)" #ref1>
+                  <input type="text" hidden formControlName="startDate" [(ngModel)]="startDate" >
+                  <input matEndDate placeholder="End date" readonly   (dateChange)="endDateChange($event)" #ref2>
+                  <input type="text" hidden formControlName="endDate" [(ngModel)]="endDate" >
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+              </mat-form-field>
+            </div>
+
+            <label class="label">Scenes</label>
+
+            <div class="scenes" formArrayName="sessionList" *ngFor="let session of sessionList.controls; let i = index">
+              <div class="field is-grouped" [formGroupName]="i">
+                <div class="control">
+                  <div class="select">
+                    <select formControlName="day">
+                      <option>Monday</option>
+                      <option>Tuesday</option>
+                      <option>Wednesday</option>
+                      <option>Thursday</option>
+                      <option>Friday</option>
+                      <option>Saturday</option>
+                      <option>Sunday</option>
+                    </select>
+                  </div>
                 </div>
-              </div>
-              <div class="ngx-timepicker-field-example">
-                <ngx-timepicker-field [format]="24" [defaultTime]="'00:00'"></ngx-timepicker-field>
-              </div>
-            </div>
-            <div class="field is-grouped">
-              <div class="control">
-                <div class="select">
-                  <select>
-                    <option>Monday</option>
-                    <option>Tuesday</option>
-                    <option>Wednesday</option>
-                    <option>Thursday</option>
-                    <option>Friday</option>
-                    <option>Saturday</option>
-                    <option>Sunday</option>
-                  </select>
+                <div class="ngx-timepicker-field-example">
+                  <ngx-timepicker-field [format]="24" [defaultTime]="'00:00'"
+                                        formControlName="time"></ngx-timepicker-field>
                 </div>
-              </div>
-              <div class="ngx-timepicker-field-example">
-                <ngx-timepicker-field [format]="24" [defaultTime]="'00:00'"></ngx-timepicker-field>
+                <button class="button is-medium is-primary" (click)="addSession()">
+                  +
+                </button>
               </div>
             </div>
-          </div>
 
+            <div class="field is-grouped mt-4">
+              <div class="control">
+                <button class="button is-link is-large" (click)="submit()">Submit</button>
+              </div>
+              <div class="control">
+                <button class="button is-link is-light">Cancel</button>
+              </div>
+            </div>
 
-
-
-
-        <div class="field is-grouped mt-4">
-          <div class="control">
-            <button class="button is-link is-large">Submit</button>
-          </div>
-          <div class="control">
-            <button class="button is-link is-light">Cancel</button>
           </div>
         </div>
-
       </div>
-    </div>
-  </div>
+    </form>
+
   </div>
 </section>
 
-<footer class="footer is-hidden">
-  <div class="container">
-    <div class="content has-text-centered">
-      <p>Hello</p>
-    </div>
-  </div>
-</footer>
