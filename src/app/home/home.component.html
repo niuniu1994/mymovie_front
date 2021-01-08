@@ -12,30 +12,34 @@
             </div>
           </div>
       </div>
-      <div *ngFor="let movie of movies">
-        <div class="card mb-3">
-          <div class="card-content">
-            <div class="media">
-              <div class="media-left">
-                <fa-icon [icon]="faFilm"></fa-icon>
-              </div>
-              <div class="media-content">
-                <p class="title is-4 has-text-black">{{movie.title}}</p>
-                <p class="subtitle is-6 has-text-black"> </p>
-                <p class="subtitle is-6 has-text-black"> {{movie.duration}} mins / {{movie.language}} <br>
-                  <span class="has-text-grey-light is-small">Date range: </span>{{movie.startDate}} - {{movie.endDate}}<br>
-                  <span class="is-small has-text-grey-light">Directed: </span>{{movie.director}}<br>
-                  <span class="is-small has-text-grey-light">Stars: </span>{{movie.actors}}<br>
-                  <span class="is-small has-text-grey-light">Subtitle: </span>{{movie.subtitle}}<br>
-                  <span class="is-small has-text-grey-light">Min age: </span>{{movie.minAge}}<br><br>
-                <span class="is-small has-text-grey-light">Cinema: </span>{{movie.admin.cinemaName}}<br>
-                <span class="is-small has-text-grey-light">Address: </span>{{movie.admin.address}}</p><br>
+      <ul class="filmList">
+        <li> <div *ngFor="let movie of movies">
+          <div class="card mb-3">
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <fa-icon [icon]="faFilm"></fa-icon>
+                </div>
+                <div class="media-content">
+                  <p class="title is-4 has-text-black">{{movie.title}}</p>
+                  <p class="subtitle is-6 has-text-black"> </p>
+                  <p class="subtitle is-6 has-text-black"> {{movie.duration}} mins / {{movie.language}} <br>
+                    <span class="has-text-grey-light is-small">Date range: </span>{{movie.startDate}} - {{movie.endDate}}<br>
+                    <span class="is-small has-text-grey-light">Directed: </span>{{movie.director}}<br>
+                    <span class="is-small has-text-grey-light">Stars: </span>{{movie.actors}}<br>
+                    <span class="is-small has-text-grey-light">Subtitle: </span>{{movie.subtitle}}<br>
+                    <span class="is-small has-text-grey-light">Min age: </span>{{movie.minAge}}<br><br>
+                    <span class="is-small has-text-grey-light">Cinema: </span>{{movie.admin.cinemaName}}<br>
+                    <span class="is-small has-text-grey-light">Address: </span>{{movie.admin.address}}</p><br>
                   <time *ngFor="let se of movie.sessionList">{{se.day}} {{se.time}} /</time>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </div> </li>
+      </ul>
+
+
     </div>
   </div>
 </section>

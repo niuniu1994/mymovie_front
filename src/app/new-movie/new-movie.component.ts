@@ -39,13 +39,13 @@ export class NewMovieComponent implements OnInit {
   public movieGroup: FormGroup;
 
   public alert = false;
-  public alert1= false;
-  public alert2= false;
+  public alert1 = false;
+  public alert2 = false;
   startDate: any;
   endDate: any;
 
 
-  constructor(private fb: FormBuilder, private movieService: MovieService, private datePipe: DatePipe,private router:Router) {
+  constructor(private fb: FormBuilder, private movieService: MovieService, private datePipe: DatePipe, private router: Router) {
 
   }
 
@@ -62,8 +62,8 @@ export class NewMovieComponent implements OnInit {
       director: ['', Validators.required],
       actors: ['', Validators.required],
       minAge: ['', Validators.required],
-      startDate: ['',Validators.required],
-      endDate: ['',Validators.required],
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required],
       sessionList: this.fb.array([
         this.createSession()
       ])
@@ -94,7 +94,7 @@ export class NewMovieComponent implements OnInit {
   public startDateChange($event: MatDatepickerInputEvent<any>) {
     let sd = $event.value;
     this.startDate = this.datePipe.transform(sd, 'yyyy-MM-dd');
-    console.log(this.startDate + '--------')
+    console.log(this.startDate + '--------');
     console.log(this.movieGroup.get('startDate'));
   }
 
@@ -106,10 +106,11 @@ export class NewMovieComponent implements OnInit {
   public submit(): void {
     if (this.movieGroup.valid) {
       this.movieService.addMovie(this.movieGroup.value).then(value => {
-        if (value['msg'] == "Success"){
+        let errorCode: number = value['errorCode'];
+        if (errorCode == 0) {
           this.alert1 = true;
           this.movieGroup.reset();
-        }else {
+        } else {
           this.alert2 = true;
         }
       });

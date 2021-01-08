@@ -22,8 +22,9 @@ export class AdminHomeComponent implements OnInit {
 
   private init(){
     this.movieService.getMoviesOfAdmin().then(value => {
-      if (value['msg']=='Success'){
-        this.movies = value['movies'];
+      let errorCode: number = value['errorCode'];
+      if (errorCode==0){
+        this.movies = value['data']['movies'];
       }else {
         this.alert = true;
       }

@@ -1,0 +1,8 @@
+.filmList {
+  height: 650px;
+  overflow-y: scroll;
+}
+
+.filmList::-webkit-scrollbar {
+  display: none;
+}

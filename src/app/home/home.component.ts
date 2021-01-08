@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
       this.city = this.city.trim().replace(' ', '_');
       this.movieService.getMoviesByCity(this.city).then(value => {
         this.city = '';
-        this.movies = value['movies'];
+        this.movies = value['data']['movies'];
       })
     }
   }

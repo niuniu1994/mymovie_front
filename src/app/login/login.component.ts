@@ -34,13 +34,14 @@ export class LoginComponent implements OnInit {
   public async submit() {
     if (this.formGroup.valid) {
       await this.authService.authentication(JSON.stringify(this.formGroup.value)).then(value => {
-        console.log(value['msg']);
-        if (value['msg'] == 'Success') {
-          sessionStorage.setItem('token',value['token']);
+        let errorCode:number = value['errorCode']
+
+        if (errorCode == 0) {
+          sessionStorage.setItem('token',value['data']['token']);
           this.router.navigateByUrl('admin');
-        } else if (value['msg'] == 'Failed') {
+        } else if (errorCode == -4) {
           this.alert = 'Username or password incorrect';
-        } else if (value['msg'] == 'Object is null') {
+        } else if (errorCode == -3) {
           this.alert = 'Username and password can not be empty';
         }
       });
